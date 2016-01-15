@@ -3,8 +3,8 @@ public class Definition {
     private String mExample;
 
     public Definition(String definition, String example) {
-        mString = definition;
-        mExample = example;
+        mString = definition.trim().toLowerCase();
+        mExample = example.trim().toLowerCase();
     }
 
     public String getString() {

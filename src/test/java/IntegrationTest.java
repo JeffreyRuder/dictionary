@@ -28,13 +28,13 @@ public class IntegrationTest extends FluentTest {
   public void addAWordPage() {
       goTo("http://localhost:4567/");
       click("a", withText("Add a Word"));
-      assertThat(pageSource()).contains("Now's your chance");
+      assertThat(pageSource()).contains("add your own word");
   }
 
   @Test
   public void addsWordsSuccessfully() {
       goTo("http://localhost:4567/new");
-      fill("#word").with("expeditious");
+      fill("#userword").with("expeditious");
       submit(".btn");
       assertThat(pageSource()).contains("expeditious");
   }
@@ -42,21 +42,35 @@ public class IntegrationTest extends FluentTest {
   @Test
   public void individualWordPage() {
       goTo("http://localhost:4567/new");
-      fill("#word").with("expeditious");
+      fill("#userword").with("expeditious");
       submit(".btn");
       click("a", withText("expeditious"));
-      assertThat(pageSource).contains("Add Definition");
+      assertThat(pageSource()).contains("define this word");
   }
 
   @Test
   public void addsDefinitionsSuccessfully() {
       goTo("http://localhost:4567/new");
-      fill("#word").with("baton");
+      fill("#userword").with("baton");
       submit(".btn");
       click("a", withText("baton"));
-      fill("#definition").with("a kind of stick");
-      fill("#example").with("the marshal had a baton");
+      fill("#userdefinition").with("a kind of stick");
+      fill("#userexample").with("the marshal had a baton");
       submit(".btn");
-      assertThat(pageSource).contains("the marshal had a baton");
+      assertThat(pageSource()).contains("the marshal had a baton");
+  }
+
+  @Test
+  public void addsMultipleDefinitions() {
+      goTo("http://localhost:4567/new");
+      fill("#userword").with("baton");
+      submit(".btn");
+      click("a", withText("baton"));
+      fill("#userdefinition").with("a kind of stick");
+      fill("#userexample").with("the marshal had a baton");
+      submit(".btn");
+      fill("#userdefinition").with("a thing you toss");
+      fill("#userexample").with("she twirled the baton");
+      assertThat(pageSource()).contains("she twirled the baton");
   }
 }

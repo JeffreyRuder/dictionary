@@ -10,10 +10,13 @@
     #if ($word.getAllDefinitions().isEmpty())
       <p class="definition">this word has no definitions yet</p>
     #else
-      <p class="definition">$word.getAllDefinitions().get(0)</p>
+      <p class="definition">$word.getAllDefinitions().get(0).getString()</p>
       <p class="example">$word.getAllDefinitions().get(0).getExample()</p>
     #end
-    <p class="creation">$word.getCreatedAt().getMonth().getDisplayValue(FULL, Locale.US) $word.getCreatedAt().getDayOfMonth(), $word.getCreatedAt().getYear()</p>
+    #if ($word.getAllDefinitions().size() > 1)
+      <p class="seemore">Click the word to see more definitions.</p>
+    #end
+    <p class="creation">$word.getCreatedAt().getMonth().getValue()-$word.getCreatedAt().getDayOfMonth()-$word.getCreatedAt().getYear()</p>
   </div>
 #end
 

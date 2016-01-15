@@ -33,7 +33,7 @@ public class App {
 
         get("/", (request, response) -> {
             HashMap<String, Object> model = new HashMap<String, Object>();
-            model.put("words", Words.getAll());
+            model.put("words", Word.getAll());
             model.put("template", "templates/allwords.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
@@ -42,7 +42,7 @@ public class App {
 
         get("/new", (request, response) -> {
             HashMap<String, Object> model = new HashMap<String, Object>();
-            model.put("template", "templates/newword.vtl");
+            model.put("template", "templates/new.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
@@ -67,7 +67,7 @@ public class App {
           }
 
           model.put("alreadyadded", alreadyAdded);
-          model.put("words", Words.getAll());
+          model.put("words", Word.getAll());
           model.put("template", "templates/allwords.vtl");
           return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());

@@ -1,0 +1,24 @@
+#foreach ($definition in $word.getAllDefinitions())
+  <div class="wordblock">
+    <a class="word" href="/$word.getString()">$word.getString()</a>
+    #if ($word.getAllDefinitions().isEmpty())
+      <p class="definition">this word has no definitions yet</p>
+    #else
+      <p class="definition">$definition.getString()</p>
+      <p class="example">$definition.getExample()</p>
+    #end
+  </div>
+#end
+
+<h2 class="addwordtag">EPIC DICTIONARY IS WRITTEN BY YOU</h2>
+<p>Now's your chance to define this word.</p>
+
+<form action="/$word.getString()" method="post">
+  <div class="form-group">
+    <input name="userdefinition" type="text" class="form-control" id="userdefinition" required placeholder="Define $word.getString() . . .">
+  </div>
+  <div class="form-group">
+    <textarea name="userexample" type="text" class="form-control" id="userexample" required placeholder="Now use $word.getString() in a sentence . . ."></textarea>
+  </div>
+  <button type="submit" class="btn btn-default btn-block">Submit!</button>
+</form>
