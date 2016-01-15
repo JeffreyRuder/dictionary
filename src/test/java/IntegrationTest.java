@@ -18,5 +18,41 @@ public class IntegrationTest extends FluentTest {
   @ClassRule
   public static ServerRule server = new ServerRule();
 
-  //Tests go here
+  @Test
+  public void rootTest() {
+      goTo("http://localhost:4567/");
+      assertThat(pageSource()).contains("Dictionary");
+  }
+
+  public void addAWordPage() {
+      goTo("http://localhost:4567/");
+      click("a", withText("Add a Word"));
+      assertThat(pageSource()).contains("Now's your chance");
+  }
+
+  public void addsWordsSuccessfully() {
+      goTo("http://localhost:4567/new");
+      fill("#word").with("expeditious");
+      submit(".btn");
+      assertThat(pageSource()).contains("expeditious");
+  }
+
+  public void individualWordPage() {
+      goTo("http://localhost:4567/new");
+      fill("#word").with("expeditious");
+      submit(".btn");
+      click("a", withText("expeditious"));
+      assertThat(pageSource).contains("Add Definition");
+  }
+
+  public void addsDefinitionsSuccessfully() {
+      goTo("http://localhost:4567/new");
+      fill("#word").with("baton");
+      submit(".btn");
+      click("a", withText("baton"));
+      fill("#definition").with("a kind of stick");
+      fill("#example").with("the marshal had a baton");
+      submit(".btn");
+      assertThat(pageSource).contains("the marshal had a baton");
+  }
 }
