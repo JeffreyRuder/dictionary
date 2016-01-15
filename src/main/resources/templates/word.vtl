@@ -1,31 +1,38 @@
-<div class="allwords col-md-6 col-md-offset-2" id="allwords">
-  #foreach ($definition in $word.getAllDefinitions())
-    <div class="wordblock">
-      <a class="word" href="/$word.getString()">$word.getString()</a>
-      #if ($word.getAllDefinitions().isEmpty())
-        <p class="definition">this word has no definitions yet</p>
-      #else
-        <p class="definition">$definition.getString()</p>
-        <p class="example"><em>$definition.getExample()</em></p>
-      #end
-    </div>
-  #end
-
-  <div class="wordblock">
-    <h1 class="addwordtag"><u>New Definition</u></h1>
-    <p class="addwordbody">Now's your chance to define this word.</p>
-
-    <form action="/$word.getString()" method="post">
-      <div class="form-group">
-        <input name="userdefinition" type="text" class="form-control" id="userdefinition" required placeholder="Define $word.getString() . . .">
-      </div>
-      <div class="form-group">
-        <textarea name="userexample" type="text" class="form-control" id="userexample" required maxlength="99" placeholder="Now use $word.getString() in a sentence . . ."></textarea>
-      </div>
-      <button type="submit" class="btn btn-warning btn-block">Submit!</button>
-    </form>
+#if ($wordnotadded)
+  <div class="col-md-6 col-md-offset-2">
+    <h1>Epic Fail! Word Not Found.</h1>
+    <h2>Maybe it hasn't been added yet? To add a word, use the Add a Word button.</h2>
   </div>
-</div>
+#else
+  <div class="allwords col-md-6 col-md-offset-2" id="allwords">
+    #foreach ($definition in $word.getAllDefinitions())
+      <div class="wordblock">
+        <a class="word" href="/$word.getString()">$word.getString()</a>
+        #if ($word.getAllDefinitions().isEmpty())
+          <p class="definition">this word has no definitions yet</p>
+        #else
+          <p class="definition">$definition.getString()</p>
+          <p class="example"><em>$definition.getExample()</em></p>
+        #end
+      </div>
+    #end
+
+    <div class="wordblock">
+      <h1 class="addwordtag"><u>New Definition</u></h1>
+      <p class="addwordbody">Now's your chance to define this word.</p>
+
+      <form action="/$word.getString()" method="post">
+        <div class="form-group">
+          <input name="userdefinition" type="text" class="form-control" id="userdefinition" required placeholder="Define $word.getString() . . .">
+        </div>
+        <div class="form-group">
+          <textarea name="userexample" type="text" class="form-control" id="userexample" required maxlength="99" placeholder="Now use $word.getString() in a sentence . . ."></textarea>
+        </div>
+        <button type="submit" class="btn btn-warning btn-block">Submit!</button>
+      </form>
+    </div>
+  </div>
+#end
 
 <div class="linkblock col-md-2 col-md-offset-2">
   <p><mark><strong>Epic Dictionary</strong> is written by people just like you!</mark></p>

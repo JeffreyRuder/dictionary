@@ -48,6 +48,11 @@ public class App {
 
         get("/:id", (request, response) -> {
           HashMap<String, Object> model = new HashMap<String, Object>();
+          boolean wordNotAdded = false;
+          if (Word.getWord(request.params(":id")) == null) {
+            wordNotAdded = true;
+          }
+          model.put("wordnotadded", wordNotAdded);
           model.put("word", Word.getWord(request.params(":id")));
           model.put("template", "templates/word.vtl");
           return new ModelAndView(model, layout);

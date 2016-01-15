@@ -76,4 +76,11 @@ public class IntegrationTest extends FluentTest {
       fill("#userexample").with("she twirled the baton");
       assertThat(pageSource()).contains("she twirled the baton");
   }
+
+  @Test
+  public void errorDisplaysIfWordNotFound() {
+    goTo("http://localhost:4567/remoulade");
+    assertThat(pageSource()).contains("Epic Fail!");
+  }
+
 }
