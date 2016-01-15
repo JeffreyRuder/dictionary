@@ -1,27 +1,28 @@
-<h1 class="title">Epic Dictionary</h1>
-
 #if ($alreadyadded)
   <div class="wordblock">
-    <p>That word is already in the dictionary. Click on it to add a definition, or click Add a Word to try again.</p>
+    <p class="error">That word is already in the dictionary. Click on it to add a definition, or click Add a Word to try again.</p>
   </div>
 #end
 
-#foreach ($word in $words)
-  <div class="wordblock">
-    <a class="word" href="/$word.getString()">$word.getString()</a>
-    #if ($word.getAllDefinitions().isEmpty())
-      <p class="definition">this word has no definitions yet</p>
-    #else
-      <p class="definition">$word.getAllDefinitions().get(0).getString()</p>
-      <p class="example">$word.getAllDefinitions().get(0).getExample()</p>
-    #end
-    #if ($word.getAllDefinitions().size() > 1)
-      <p class="seemore">Click the word to see more definitions.</p>
-    #end
-    <p class="creation"><mark>$word.getCreatedAt().getMonth().getValue()-$word.getCreatedAt().getDayOfMonth()-$word.getCreatedAt().getYear()</mark></p>
-  </div>
-#end
+<div class="allwords col-md-6 col-md-offset-2">
+  #foreach ($word in $words)
+    <div class="wordblock">
+      <a class="word" href="/$word.getString()">$word.getString()</a>
+      #if ($word.getAllDefinitions().isEmpty())
+        <p class="definition">this word has no definitions yet</p>
+      #else
+        <p class="definition">$word.getAllDefinitions().get(0).getString()</p>
+        <p class="example"><em>$word.getAllDefinitions().get(0).getExample()</em></p>
+      #end
+      #if ($word.getAllDefinitions().size() > 1)
+        <p class="seemore">Click the word to see more definitions.</p>
+      #end
+      <p class="creation"><mark>$word.getCreatedAt().getMonth().getValue()-$word.getCreatedAt().getDayOfMonth()-$word.getCreatedAt().getYear()</mark></p>
+    </div>
+  #end
+</div>
 
-<div class="linkblock">
-  <a class="addword" href="/new">Add a Word</a>
+<div class="linkblock col-md-2 col-md-offset-2">
+  <p><mark><strong>Epic Dictionary</strong> is written by people just like you!</mark></p>
+  <a class="addword btn btn-primary btn-block" href="/new">+ Add a Word</a>
 </div>

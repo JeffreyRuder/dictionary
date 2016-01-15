@@ -1,29 +1,34 @@
-#foreach ($definition in $word.getAllDefinitions())
+<div class="allwords col-md-6 col-md-offset-2" id="allwords">
+  #foreach ($definition in $word.getAllDefinitions())
+    <div class="wordblock">
+      <a class="word" href="/$word.getString()">$word.getString()</a>
+      #if ($word.getAllDefinitions().isEmpty())
+        <p class="definition">this word has no definitions yet</p>
+      #else
+        <p class="definition">$definition.getString()</p>
+        <p class="example"><em>$definition.getExample()</em></p>
+      #end
+    </div>
+  #end
+
   <div class="wordblock">
-    <a class="word" href="/$word.getString()">$word.getString()</a>
-    #if ($word.getAllDefinitions().isEmpty())
-      <p class="definition">this word has no definitions yet</p>
-    #else
-      <p class="definition">$definition.getString()</p>
-      <p class="example">$definition.getExample()</p>
-    #end
-  </div>
-#end
+    <h1 class="addwordtag"><u>New Definition</u></h1>
+    <p class="addwordbody">Now's your chance to define this word.</p>
 
-<h2 class="addwordtag">EPIC DICTIONARY IS WRITTEN BY YOU</h2>
-<p>Now's your chance to define this word.</p>
-
-<form action="/$word.getString()" method="post">
-  <div class="form-group">
-    <input name="userdefinition" type="text" class="form-control" id="userdefinition" required placeholder="Define $word.getString() . . .">
+    <form action="/$word.getString()" method="post">
+      <div class="form-group">
+        <input name="userdefinition" type="text" class="form-control" id="userdefinition" required placeholder="Define $word.getString() . . .">
+      </div>
+      <div class="form-group">
+        <textarea name="userexample" type="text" class="form-control" id="userexample" required maxlength="99" placeholder="Now use $word.getString() in a sentence . . ."></textarea>
+      </div>
+      <button type="submit" class="btn btn-warning btn-block">Submit!</button>
+    </form>
   </div>
-  <div class="form-group">
-    <textarea name="userexample" type="text" class="form-control" id="userexample" required placeholder="Now use $word.getString() in a sentence . . ."></textarea>
-  </div>
-  <button type="submit" class="btn btn-default btn-block">Submit!</button>
-</form>
+</div>
 
-<div class="linkblock">
-  <a class="return" href="/">Return to Word List</a>
-  <a class="addword" href="/new">Add Another Word</a>
+<div class="linkblock col-md-2 col-md-offset-2">
+  <p><mark><strong>Epic Dictionary</strong> is written by people just like you!</mark></p>
+  <a class="return btn btn-primary btn-block" href="/">&lt; To Word List</a>
+  <a class="addword btn btn-primary btn-block" href="/new">+ Add A Word</a>
 </div>
