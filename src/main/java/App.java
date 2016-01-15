@@ -1,4 +1,5 @@
-import java.time.*;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.HashMap;
 
 import spark.ModelAndView;
@@ -20,8 +21,6 @@ public class App {
         //
         // setPort(port);
 
-
-
         //RESTful ARCHITECTURE
         //Use POST to create something on the server
         //Use GET to retrieve something from the server
@@ -32,7 +31,7 @@ public class App {
 
         //ROUTES: Home Page
 
-        get("/dictionary", (request, response) -> {
+        get("/", (request, response) -> {
             HashMap<String, Object> model = new HashMap<String, Object>();
             model.put("words", Word.getAll());
             model.put("template", "templates/allwords.vtl");
@@ -56,7 +55,7 @@ public class App {
 
         //ROUTES: Changing Resources
 
-        post("/dictionary", (request, response) -> {
+        post("/", (request, response) -> {
           HashMap<String, Object> model = new HashMap<String, Object>();
           boolean alreadyAdded = false;
           String userWord = request.queryParams("userword");
