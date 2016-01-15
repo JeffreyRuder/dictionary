@@ -27,7 +27,7 @@ public class IntegrationTest extends FluentTest {
   @Test
   public void addAWordPage() {
       goTo("http://localhost:4567/");
-      click("a", withText("Add a Word"));
+      click("a", withText("+ Add a Word"));
       assertThat(pageSource()).contains("add your own word");
   }
 
@@ -35,7 +35,8 @@ public class IntegrationTest extends FluentTest {
   public void addsWordsSuccessfully() {
       goTo("http://localhost:4567/new");
       fill("#userword").with("expeditious");
-      submit(".btn");
+      submit(".btn-warning");
+      goTo("http://localhost:4567/expeditious");
       assertThat(pageSource()).contains("expeditious");
   }
 
@@ -43,8 +44,8 @@ public class IntegrationTest extends FluentTest {
   public void individualWordPage() {
       goTo("http://localhost:4567/new");
       fill("#userword").with("expeditious");
-      submit(".btn");
-      click("a", withText("expeditious"));
+      submit(".btn-warning");
+      goTo("http://localhost:4567/expeditious");
       assertThat(pageSource()).contains("define this word");
   }
 
@@ -52,11 +53,13 @@ public class IntegrationTest extends FluentTest {
   public void addsDefinitionsSuccessfully() {
       goTo("http://localhost:4567/new");
       fill("#userword").with("baton");
-      submit(".btn");
+      submit(".btn-warning");
+      goTo("http://localhost:4567/");
       click("a", withText("baton"));
       fill("#userdefinition").with("a kind of stick");
       fill("#userexample").with("the marshal had a baton");
-      submit(".btn");
+      submit(".btn-warning");
+      goTo("http://localhost:4567/baton");
       assertThat(pageSource()).contains("the marshal had a baton");
   }
 
@@ -64,11 +67,11 @@ public class IntegrationTest extends FluentTest {
   public void addsMultipleDefinitions() {
       goTo("http://localhost:4567/new");
       fill("#userword").with("baton");
-      submit(".btn");
+      submit(".btn-warning");
       click("a", withText("baton"));
       fill("#userdefinition").with("a kind of stick");
       fill("#userexample").with("the marshal had a baton");
-      submit(".btn");
+      submit(".btn-warning");
       fill("#userdefinition").with("a thing you toss");
       fill("#userexample").with("she twirled the baton");
       assertThat(pageSource()).contains("she twirled the baton");
