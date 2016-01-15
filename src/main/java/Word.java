@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -6,10 +7,12 @@ public class Word {
     private static TreeMap<String, Word> mInstances = new TreeMap<String, Word>();
 
     private final String mString;
+    private final LocalDate mCreatedAt;
     private ArrayList<Definition> mDefinitions;
 
     public Word(String wordString) {
         mString = wordString.trim().toLowerCase();
+        mCreatedAt = LocalDate.now();
         mDefinitions = new ArrayList<Definition>();
         mInstances.put(mString, this);
     }
@@ -40,6 +43,10 @@ public class Word {
 
     public ArrayList<Definition> getAllDefinitions() {
         return mDefinitions;
+    }
+
+    public LocalDate getCreatedAt() {
+        return mCreatedAt;
     }
 
 }

@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -62,5 +64,11 @@ public class WordTest {
         word.addDefinition(definition);
         word.removeDefinition(definition);
         assertFalse(word.getAllDefinitions().contains(definition));
+    }
+
+    @Test
+    public void word_hasCreatedAt_true() {
+        Word word = new Word("word");
+        assertEquals(LocalDate.now().getDayOfYear(), word.getCreatedAt().getDayOfYear());
     }
 }
