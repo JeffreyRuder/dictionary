@@ -83,4 +83,18 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Epic Fail!");
   }
 
+  @Test
+  public void definitionRemovalWorks() {
+    goTo("http://localhost:4567/new");
+    fill("#userword").with("baton");
+    submit(".btn-warning");
+    click("a", withText("baton"));
+    fill("#userdefinition").with("aaaaa");
+    fill("#userexample").with("the marshal had a baton");
+    submit(".btn-warning");
+    goTo("http://localhost:4567/baton/remove/aaaaa");
+    goTo("http://localhost:4567");
+    assertThat(pageSource().contains("no definitions yet"));
+  }
+
 }

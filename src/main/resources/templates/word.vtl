@@ -13,6 +13,12 @@
         #else
           <p class="definition">$definition.getString()</p>
           <p class="example"><em>$definition.getExample()</em></p>
+          <form action="/$word.getString()/remove/$definition.getString()" method="post" class="removalform pull-right">
+            <div class="form-group">
+              <input name="definitiontoremove" type="hidden" value="$definition.getString()">
+            </div>
+            <button type="submit" class="btn btn-primary btn-removal">- Remove</button>
+          </form>
         #end
       </div>
     #end

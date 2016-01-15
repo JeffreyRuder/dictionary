@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -11,15 +12,15 @@ public class App {
         staticFileLocation("/public");
         String layout = "templates/layout.vtl";
 
-        // ProcessBuilder process = new ProcessBuilder();
-        // Integer port;
-        // if (process.environment().get("PORT") != null) {
-        //     port = Integer.parseInt(process.environment().get("PORT"));
-        // } else {
-        //     port = 4567;
-        // }
-        //
-        // setPort(port);
+        ProcessBuilder process = new ProcessBuilder();
+        Integer port;
+        if (process.environment().get("PORT") != null) {
+            port = Integer.parseInt(process.environment().get("PORT"));
+        } else {
+            port = 4567;
+        }
+
+        setPort(port);
 
         //RESTful ARCHITECTURE
         //Use POST to create something on the server
@@ -82,9 +83,27 @@ public class App {
           Word thisWord = Word.getWord(request.params(":id"));
           String userDefinition = request.queryParams("userdefinition");
           String userExample = request.queryParams("userexample");
+
           Definition newDefinition = new Definition(userDefinition, userExample);
 
           thisWord.addDefinition(newDefinition);
+
+          model.put("word", thisWord);
+          model.put("template", "templates/word.vtl");
+          return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
+
+      post("/:id/remove/:rmdef", (request, response) -> {
+          HashMap<String, Object> model = new HashMap<String, Object>();
+          Word thisWord = Word.getWord(request.params(":id"));
+          String removalRequest = request.params(":rmdef");
+
+          for (Iterator<Definition> iterator = thisWord.getAllDefinitions().iterator(); iterator.hasNext();) {
+            Definition definition = iterator.next();
+            if (definition.getString().equals(removalRequest)) {
+              iterator.remove();
+            }
+          }
 
           model.put("word", thisWord);
           model.put("template", "templates/word.vtl");

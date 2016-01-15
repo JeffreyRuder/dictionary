@@ -23,6 +23,11 @@ header h1 {
 
 .allwords {
   padding: 0;
+  position: relative;
+}
+
+.allwords .removalform {
+  transform: translateY(-150%);
 }
 
 .wordblock, .linkblock {
