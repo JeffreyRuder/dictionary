@@ -39,18 +39,28 @@ public class WordTest {
     }
 
     @Test
-    public void clear_clearsAllWords_true() {
+    public void clearAll_clearsAllWords() {
         Word firstWord = new Word("coding");
         Word secondWord = new Word("bird");
-        Word.clear();
-        assertEquals(null, Word.getAll());
+        Word.clearAll();
+        assertFalse(Word.getAll().containsValue(firstWord));
+        assertFalse(Word.getAll().containsValue(secondWord));
     }
 
-    @Test
-    public void addDefinition_addsDefinitionToWord_true() {
-        Word word = new Word("bird");
-        Definition definition = new Definition("a flying animal");
-        word.addDefinition(definition);
-        assertTrue(word.getAllDefinitions.contains(definition));
-    }
+    // @Test
+    // public void addDefinition_addsDefinitionToWord() {
+    //     Word word = new Word("bird");
+    //     Definition definition = new Definition("a flying animal");
+    //     word.addDefinition(definition);
+    //     assertTrue(word.getAllDefinitions.contains(definition));
+    // }
+    //
+    // @Test
+    // public void removeDefinition_removesDefinitionFromWord() {
+    //     Word word = new Word("bird");
+    //     Definition definition = new Definition("a flying animal");
+    //     word.addDefinition(definition);
+    //     word.removeDefinition(definition);
+    //     assertFalse(word.getAllDefinitions.contains(definition));
+    // }
 }
