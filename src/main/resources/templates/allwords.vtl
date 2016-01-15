@@ -1,0 +1,22 @@
+#if ($alreadyadded)
+  <div class="wordblock">
+    <p>That word is already in the dictionary. Click on it to add a definition, or click Add a Word to try again.</p>
+  </div>
+#end
+
+#foreach ($word in $words)
+  <div class="wordblock">
+    <a class="word" href="/$word.getString()">$word.getString()</a>
+    #if ($word.getAllDefinitions().isEmpty())
+      <p class="definition">this word has no definitions yet</p>
+    #else
+      <p class="definition">$word.getAllDefinitions().get(0)</p>
+      <p class="example">$word.getAllDefinitions().get(0).getExample()</p>
+    #end
+    <p class="creation">$word.getCreatedAt().getMonth().getDisplayValue(FULL, Locale.US) $word.getCreatedAt().getDayOfMonth(), $word.getCreatedAt().getYear()</p>
+  </div>
+#end
+
+<div class="addwordblock">
+  <a class="addword" href="/new">Add a Word</a>
+</div>
