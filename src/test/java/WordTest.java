@@ -47,20 +47,20 @@ public class WordTest {
         assertFalse(Word.getAll().containsValue(secondWord));
     }
 
-    // @Test
-    // public void addDefinition_addsDefinitionToWord() {
-    //     Word word = new Word("bird");
-    //     Definition definition = new Definition("a flying animal");
-    //     word.addDefinition(definition);
-    //     assertTrue(word.getAllDefinitions.contains(definition));
-    // }
-    //
-    // @Test
-    // public void removeDefinition_removesDefinitionFromWord() {
-    //     Word word = new Word("bird");
-    //     Definition definition = new Definition("a flying animal");
-    //     word.addDefinition(definition);
-    //     word.removeDefinition(definition);
-    //     assertFalse(word.getAllDefinitions.contains(definition));
-    // }
+    @Test
+    public void addDefinition_addsDefinitionToWord() {
+        Word word = new Word("bird");
+        Definition definition = new Definition("a flying animal", "the bird flew away");
+        word.addDefinition(definition);
+        assertTrue(word.getAllDefinitions().contains(definition));
+    }
+
+    @Test
+    public void removeDefinition_removesDefinitionFromWord() {
+        Word word = new Word("bird");
+        Definition definition = new Definition("a flying animal", "the bird flew away");
+        word.addDefinition(definition);
+        word.removeDefinition(definition);
+        assertFalse(word.getAllDefinitions().contains(definition));
+    }
 }
