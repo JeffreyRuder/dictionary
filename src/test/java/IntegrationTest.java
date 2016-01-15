@@ -24,12 +24,14 @@ public class IntegrationTest extends FluentTest {
       assertThat(pageSource()).contains("Dictionary");
   }
 
+  @Test
   public void addAWordPage() {
       goTo("http://localhost:4567/");
       click("a", withText("Add a Word"));
       assertThat(pageSource()).contains("Now's your chance");
   }
 
+  @Test
   public void addsWordsSuccessfully() {
       goTo("http://localhost:4567/new");
       fill("#word").with("expeditious");
@@ -37,6 +39,7 @@ public class IntegrationTest extends FluentTest {
       assertThat(pageSource()).contains("expeditious");
   }
 
+  @Test
   public void individualWordPage() {
       goTo("http://localhost:4567/new");
       fill("#word").with("expeditious");
@@ -45,6 +48,7 @@ public class IntegrationTest extends FluentTest {
       assertThat(pageSource).contains("Add Definition");
   }
 
+  @Test
   public void addsDefinitionsSuccessfully() {
       goTo("http://localhost:4567/new");
       fill("#word").with("baton");
