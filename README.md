@@ -1,26 +1,33 @@
-# Java/Spark/Velocity File Structure Template
+# EPIC DICTIONARY
 
-#### January 14, 2016
+#### January 15, 2016
 
-#### By Midori Bowen and Jeffrey Ruder
+#### By Jeffrey Ruder
 
 ## Description
 
-This is a template file structure for use in Epicodus Java/Spark/Velocity projects.
+This is a dictionary application that allows users to add words and definitions. It demonstrates using objects within objects in Java.
 
-## How To Use
+## Notable Features
 
-* Make a directory for your project and initialize a git repository.
-* Pull this file structure template from GitHub: `git pull https://github.com/JeffreyRuder/java-spark-template.git`
+* Does not use a database. Uses `java.util.TreeMap` to store key/value pairs of word strings and `Word` objects. The TreeMap implementation automatically sorts words alphabetically on the home page.
+* Uses `java.time.LocalDate` to track creation time of each `Word` object.
+* Each `Word` object can contain multiple `Dictionary` objects.
 
-OR:
+## Setup Instructions
 
-* Fork this repository from GitHub and rename it
-
-## Please Make This Better
-
-Please fork this repository and send a pull request if something in here could be better.
+* Clone or pull this repository.
+* Ensure you have Gradle and Java installed.
+* Navigate to the project directory and `gradle run`
 
 ## Technologies Used
 
 Java, Spark, JUnit, FluentLenium, Velocity, Bootstrap
+
+## License
+
+MIT License. See LICENSE.md for details.
+
+## Copyright
+
+Copyright (c) 2016 Jeffrey Ruder

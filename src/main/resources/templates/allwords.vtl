@@ -17,7 +17,7 @@
       #if ($word.getAllDefinitions().size() > 1)
         <p class="seemore">Click the word to see more definitions.</p>
       #end
-      <p class="creation"><mark>$word.getCreatedAt().getMonth().getValue()-$word.getCreatedAt().getDayOfMonth()-$word.getCreatedAt().getYear()</mark></p>
+      <p class="creation"><strong>Word added: </strong><mark>$word.getCreatedAt().getMonth().getValue()-$word.getCreatedAt().getDayOfMonth()-$word.getCreatedAt().getYear()</mark></p>
     </div>
   #end
 </div>
