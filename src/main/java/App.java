@@ -1,5 +1,5 @@
 import java.time.*;
-import java.util.*;
+import java.util.HashMap;
 
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -7,19 +7,20 @@ import static spark.Spark.*;
 
 public class App {
     public static void main(String[] args) {
-
-        ProcessBuilder process = new ProcessBuilder();
-        Integer port;
-        if (process.environment().get("PORT") != null) {
-            port = Integer.parseInt(process.environment().get("PORT"));
-        } else {
-            port = 4567;
-        }
-
-        setPort(port);
-
         staticFileLocation("/public");
         String layout = "templates/layout.vtl";
+
+        // ProcessBuilder process = new ProcessBuilder();
+        // Integer port;
+        // if (process.environment().get("PORT") != null) {
+        //     port = Integer.parseInt(process.environment().get("PORT"));
+        // } else {
+        //     port = 4567;
+        // }
+        //
+        // setPort(port);
+
+
 
         //RESTful ARCHITECTURE
         //Use POST to create something on the server
@@ -31,7 +32,7 @@ public class App {
 
         //ROUTES: Home Page
 
-        get("/", (request, response) -> {
+        get("/dictionary", (request, response) -> {
             HashMap<String, Object> model = new HashMap<String, Object>();
             model.put("words", Word.getAll());
             model.put("template", "templates/allwords.vtl");
@@ -55,7 +56,7 @@ public class App {
 
         //ROUTES: Changing Resources
 
-        post("/", (request, response) -> {
+        post("/dictionary", (request, response) -> {
           HashMap<String, Object> model = new HashMap<String, Object>();
           boolean alreadyAdded = false;
           String userWord = request.queryParams("userword");

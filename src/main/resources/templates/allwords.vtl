@@ -1,3 +1,5 @@
+<h1 class="title">Epic Dictionary</h1>
+
 #if ($alreadyadded)
   <div class="wordblock">
     <p>That word is already in the dictionary. Click on it to add a definition, or click Add a Word to try again.</p>
@@ -16,7 +18,7 @@
     #if ($word.getAllDefinitions().size() > 1)
       <p class="seemore">Click the word to see more definitions.</p>
     #end
-    <p class="creation">$word.getCreatedAt().getMonth().getValue()-$word.getCreatedAt().getDayOfMonth()-$word.getCreatedAt().getYear()</p>
+    <p class="creation"><mark>$word.getCreatedAt().getMonth().getValue()-$word.getCreatedAt().getDayOfMonth()-$word.getCreatedAt().getYear()</mark></p>
   </div>
 #end
 
