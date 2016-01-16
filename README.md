@@ -10,6 +10,10 @@ This is a dictionary application that allows users to add words and definitions.
 
 This kind of application could be implemented more effectively using a database. Epic Dictionary was written without one because the goal was to demonstrate using objects within objects in Java and writing routes to process GET and POST requests and responses.
 
+## Deployment
+
+Available online at [Heroku](https://fierce-sea-8484.herokuapp.com/code)
+
 ## Features
 
 * Uses `java.util.TreeMap` to store key/value pairs of word strings and `Word` objects. The TreeMap implementation automatically sorts words alphabetically on the home page.
