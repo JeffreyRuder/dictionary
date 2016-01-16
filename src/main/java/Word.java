@@ -21,6 +21,10 @@ public class Word {
         return mInstances.get(wordString);
     }
 
+    public static void removeWord(String wordString) {
+        mInstances.remove(wordString);
+    }
+
     public static TreeMap<String, Word> getAll() {
         return mInstances;
     }

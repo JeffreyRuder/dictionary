@@ -97,4 +97,14 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource().contains("no definitions yet"));
   }
 
+  @Test
+  public void wordRemovalWorks() {
+    goTo("http://localhost:4567/new");
+    fill("#userword").with("baton");
+    submit(".btn-warning");
+    goTo("http://localhost:4567/remove/baton");
+    goTo("http://localhost:4567");
+    assertThat(!(pageSource().contains("baton")));
+  }
+
 }

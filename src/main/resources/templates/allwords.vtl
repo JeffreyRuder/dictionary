@@ -17,6 +17,12 @@
       #if ($word.getAllDefinitions().size() > 1)
         <p class="seemore">Click the word to see more definitions.</p>
       #end
+      <form action="/remove/$word.getString()" method="post" class="removalform pull-right">
+        <div class="form-group">
+          <input name="wordtoremove" type="hidden" value="$word.getString()">
+        </div>
+        <button type="submit" class="btn btn-primary btn-removal">- Remove </button>
+      </form>
       <p class="creation"><strong>Word added: </strong><mark>$word.getCreatedAt().getMonth().getValue()-$word.getCreatedAt().getDayOfMonth()-$word.getCreatedAt().getYear()</mark></p>
     </div>
   #end

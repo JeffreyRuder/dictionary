@@ -110,5 +110,13 @@ public class App {
           return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
 
+      post("/remove/:id", (request, response) -> {
+        HashMap<String, Object> model = new HashMap<String, Object>();
+        Word.removeWord(request.params(":id"));
+        model.put("words", Word.getAll());
+        model.put("template", "templates/allwords.vtl");
+        return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
+
     }
 }
