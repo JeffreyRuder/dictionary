@@ -12,7 +12,7 @@ This kind of application could be implemented more effectively using a database.
 
 ## Deployment
 
-Available online at [Heroku](https://fierce-sea-8484.herokuapp.com/code)
+Available online at [Heroku](https://fierce-sea-8484.herokuapp.com/)
 
 ## Features
 
