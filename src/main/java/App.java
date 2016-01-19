@@ -97,10 +97,16 @@ public class App {
           HashMap<String, Object> model = new HashMap<String, Object>();
           Word thisWord = Word.getWord(request.params(":id"));
           String removalRequest = request.params(":rmdef");
+          String goodRemovalRequest = "";
+
+          for (String word : removalRequest.split("%20")) {
+            goodRemovalRequest = goodRemovalRequest + word + " ";
+          }
 
           for (Iterator<Definition> iterator = thisWord.getAllDefinitions().iterator(); iterator.hasNext();) {
             Definition definition = iterator.next();
-            if (definition.getString().equals(removalRequest)) {
+            System.out.println(definition);
+            if (definition.getString().equals(goodRemovalRequest.trim())) {
               iterator.remove();
             }
           }
