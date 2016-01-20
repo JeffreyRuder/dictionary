@@ -21,6 +21,12 @@ public class WordTest {
     }
 
     @Test
+    public void word_wordStringRemovesPercentEncoding_bird() {
+        Word word = new Word("bird%24");
+        assertEquals("bird", word.getString());
+    }
+
+    @Test
     public void getWord_returnsCorrectWord_true() {
         Word firstWord = new Word("coding");
         Word secondWord = new Word("bird");

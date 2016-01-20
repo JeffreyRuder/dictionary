@@ -11,7 +11,7 @@ public class Word {
     private ArrayList<Definition> mDefinitions;
 
     public Word(String wordString) {
-        mString = wordString.trim().toLowerCase();
+        mString = wordString.replaceAll("(%[A-Z0-9a-z]{1,2})|(\\+)", " ").trim().toLowerCase();
         mCreatedAt = LocalDate.now();
         mDefinitions = new ArrayList<Definition>();
         mInstances.put(mString, this);

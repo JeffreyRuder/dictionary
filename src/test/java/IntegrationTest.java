@@ -100,9 +100,9 @@ public class IntegrationTest extends FluentTest {
   @Test
   public void wordRemovalWorks() {
     goTo("http://localhost:4567/new");
-    fill("#userword").with("baton");
+    fill("#userword").with("baton rouge");
     submit(".btn-warning");
-    goTo("http://localhost:4567/remove/baton");
+    goTo("http://localhost:4567/remove/baton%20rouge");
     goTo("http://localhost:4567");
     assertThat(!(pageSource().contains("baton")));
   }

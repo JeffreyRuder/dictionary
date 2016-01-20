@@ -18,9 +18,10 @@ Available online at [Heroku](https://fierce-sea-8484.herokuapp.com/)
 
 * Uses `java.util.TreeMap` to store key/value pairs of word strings and `Word` objects. The TreeMap implementation automatically sorts words alphabetically on the home page.
 * Each `Word` object can contain multiple `Dictionary` objects.
-* Uses `java.time.LocalDate` to track creation time of each `Word` object.
 * Users can add and remove definitions for each word and can add and remove words.
-* An error message displays if user makes a get request for a word page and the word has not been added to the dictionary.
+* Uses `java.time.LocalDate` to track creation time of each `Word` object.
+* Uses regular expressions and `java.net.URLDecoder` to remove URL encoding strings from user input and handle spaces.
+* An error message displays if user makes a request for a word page and the word has not been added to the dictionary.
 
 ## Setup Instructions
 

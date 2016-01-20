@@ -22,4 +22,9 @@ public class DefinitionTest {
         assertEquals("the bird flew away", definition.getExample());
     }
 
+    public void definition_hasStringThatRemovesPercentEncoding() {
+      Definition definition = new Definition("a flying%20animal", "the bird flew away");
+      assertEquals("a flying animal", definition.getString());
+    }
+
 }
