@@ -1,3 +1,5 @@
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
@@ -97,16 +99,17 @@ public class App {
           HashMap<String, Object> model = new HashMap<String, Object>();
           Word thisWord = Word.getWord(request.params(":id"));
           String removalRequest = request.params(":rmdef");
-          String goodRemovalRequest = "";
-
-          for (String word : removalRequest.split("%20")) {
-            goodRemovalRequest = goodRemovalRequest + word + " ";
+          String decodedRemovalRequest = "";
+          try {
+            decodedRemovalRequest = URLDecoder.decode(removalRequest, "UTF-8");
+          } catch (UnsupportedEncodingException uee) {
+            System.err.println("Caught UnsupportedEncodingException: " + uee.getMessage());
           }
 
           for (Iterator<Definition> iterator = thisWord.getAllDefinitions().iterator(); iterator.hasNext();) {
             Definition definition = iterator.next();
             System.out.println(definition);
-            if (definition.getString().equals(goodRemovalRequest.trim())) {
+            if (definition.getString().equals(decodedRemovalRequest)) {
               iterator.remove();
             }
           }
@@ -118,7 +121,15 @@ public class App {
 
       post("/remove/:id", (request, response) -> {
         HashMap<String, Object> model = new HashMap<String, Object>();
-        Word.removeWord(request.params(":id"));
+        String removalRequest = request.params(":id");
+        String decodedRemovalRequest = "";
+        try {
+          decodedRemovalRequest = URLDecoder.decode(removalRequest, "UTF-8");
+        } catch (UnsupportedEncodingException uee) {
+          System.err.println("Caught UnsupportedEncodingException: " + uee.getMessage());
+        }
+
+        Word.removeWord(decodedRemovalRequest);
         model.put("words", Word.getAll());
         model.put("template", "templates/allwords.vtl");
         return new ModelAndView(model, layout);
