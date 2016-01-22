@@ -23,15 +23,7 @@ public class App {
         }
 
         setPort(port);
-
-        //RESTful ARCHITECTURE
-        //Use POST to create something on the server
-        //Use GET to retrieve something from the server
-        //Use PUT to change or update something on the server
-        //Use DELETE to remove or delete something on the server
-        //Keep URLs intuitive
-        //Each request from client contains all info necessary for that request
-
+        
         //ROUTES: Home Page
 
         get("/", (request, response) -> {
