@@ -6,23 +6,23 @@ public class Word {
 
     private static TreeMap<String, Word> mInstances = new TreeMap<String, Word>();
 
-    private final String mString;
+    private final String mDictionaryWord;
     private final LocalDate mCreatedAt;
     private ArrayList<Definition> mDefinitions;
 
-    public Word(String wordString) {
-        mString = wordString.replaceAll("(%[A-Z0-9a-z]{1,2})|(\\+)", " ").trim().toLowerCase();
+    public Word(String userInput) {
+        mDictionaryWord = userInput.replaceAll("(%[A-Z0-9a-z]{1,2})|(\\+)", " ").trim().toLowerCase();
         mCreatedAt = LocalDate.now();
         mDefinitions = new ArrayList<Definition>();
-        mInstances.put(mString, this);
+        mInstances.put(mDictionaryWord, this);
     }
 
-    public static Word getWord(String wordString) {
-        return mInstances.get(wordString);
+    public static Word getWord(String word) {
+        return mInstances.get(word);
     }
 
-    public static void removeWord(String wordString) {
-        mInstances.remove(wordString);
+    public static void removeWord(String word) {
+        mInstances.remove(word);
     }
 
     public static TreeMap<String, Word> getAll() {
@@ -34,7 +34,7 @@ public class Word {
     }
 
     public String getString() {
-        return mString;
+        return mDictionaryWord;
     }
 
     public void addDefinition(Definition definition) {
