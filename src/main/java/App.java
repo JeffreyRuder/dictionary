@@ -23,7 +23,7 @@ public class App {
         }
 
         setPort(port);
-        
+
         //ROUTES: Home Page
 
         get("/", (request, response) -> {
@@ -44,11 +44,20 @@ public class App {
         get("/:id", (request, response) -> {
           HashMap<String, Object> model = new HashMap<String, Object>();
           boolean wordNotAdded = false;
-          if (Word.getWord(request.params(":id")) == null) {
+          String wordRequested = request.params(":id");
+
+          String decodedWord = "";
+          try {
+            decodedWord = URLDecoder.decode(wordRequested, "UTF-8");
+          } catch (UnsupportedEncodingException uee) {
+            System.err.println("Caught UnsupportedEncodingException: " + uee.getMessage());
+          }
+
+          if (Word.getWord(decodedWord) == null) {
             wordNotAdded = true;
           }
           model.put("wordnotadded", wordNotAdded);
-          model.put("word", Word.getWord(request.params(":id")));
+          model.put("word", Word.getWord(decodedWord));
           model.put("template", "templates/word.vtl");
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
@@ -74,7 +83,16 @@ public class App {
 
       post("/:id", (request, response) -> {
           HashMap<String, Object> model = new HashMap<String, Object>();
-          Word thisWord = Word.getWord(request.params(":id"));
+          String wordRequested = request.params(":id");
+
+          String decodedWord = "";
+          try {
+            decodedWord = URLDecoder.decode(wordRequested, "UTF-8");
+          } catch (UnsupportedEncodingException uee) {
+            System.err.println("Caught UnsupportedEncodingException: " + uee.getMessage());
+          }
+
+          Word thisWord = Word.getWord(decodedWord);
           String userDefinition = request.queryParams("userdefinition");
           String userExample = request.queryParams("userexample");
 
@@ -89,7 +107,15 @@ public class App {
 
       post("/:id/remove/:rmdef", (request, response) -> {
           HashMap<String, Object> model = new HashMap<String, Object>();
-          Word thisWord = Word.getWord(request.params(":id"));
+          String wordRequested = request.params(":id");
+
+          String decodedWord = "";
+          try {
+            decodedWord = URLDecoder.decode(wordRequested, "UTF-8");
+          } catch (UnsupportedEncodingException uee) {
+            System.err.println("Caught UnsupportedEncodingException: " + uee.getMessage());
+          }
+          Word thisWord = Word.getWord(decodedWord);
           String removalRequest = request.params(":rmdef");
           String decodedRemovalRequest = "";
           try {
