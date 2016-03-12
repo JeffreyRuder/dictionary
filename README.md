@@ -10,9 +10,9 @@ This is a dictionary application that allows users to add words and definitions.
 
 This kind of application could be implemented more effectively using a database. Epic Dictionary was written without one because the goal was to demonstrate using objects within objects in Java and writing routes to process GET and POST requests and responses.
 
-## Deployment
+## Demo
 
-Available online at [Heroku](https://fierce-sea-8484.herokuapp.com/)
+Available online at [Heroku](https://epic-dictionary.herokuapp.com/)
 
 ## Features
 
